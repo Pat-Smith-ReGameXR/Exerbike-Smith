@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43da588a855e924c821a3abffad29af, type: 3}
+  m_Name: TestLandmark_02
+  m_EditorClassIdentifier: 
+  landmarkName: Unity Game - Test Point 2
+  convertFromCoordinatesToVector3: 0
+  realLifeCoords: {x: 0, y: 0}
+  inGameVector2: {x: -2781, y: 5199}
+  descriptionAudioClip: {fileID: 8300000, guid: ba8cbd09918c6334fb3fb94df009b8c8, type: 3}
