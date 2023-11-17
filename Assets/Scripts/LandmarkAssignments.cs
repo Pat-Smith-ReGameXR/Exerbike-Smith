@@ -20,8 +20,7 @@ public class LandmarkAssignments : MonoBehaviour
         GPSEncoder.SetLocalOrigin(new Vector2(40.814762f, -74.003571f));
         Instantiate(testObj, GPSEncoder.GPSToUCS(new Vector2(40.814762f, -74.003571f)), Quaternion.identity);
         Instantiate(testObj, GPSEncoder.GPSToUCS(40.800558f, -73.958174f), Quaternion.identity);
-        Instantiate(testObj, GPSEncoder.GPSToUCS(40.76399198707826f, -73.97367144386561f), Quaternion.identity);
-        Instantiate(testObj, GPSEncoder.GPSToUCS(40.767875935409556f, -73.97182619531895f), Quaternion.identity);
+        Instantiate(testObj, GPSEncoder.GPSToUCS(40.76764238564256f, -73.97130251422423f), Quaternion.identity);
 
         meshRendList.AddRange(GameObject.FindObjectsOfType<MeshRenderer>());
         Debug.Log("MESH REND LIST: " + meshRendList.Count);
@@ -31,7 +30,7 @@ public class LandmarkAssignments : MonoBehaviour
         {
             mColHolder = mRend.gameObject.AddComponent<MeshCollider>();
             mColHolder.sharedMesh = mRend.gameObject.GetComponent<MeshFilter>().mesh;
-            mColHolder.convex = true;
+            //mColHolder.convex = true;
         }
 
         CreateNewLandmarks();
@@ -78,12 +77,14 @@ public class LandmarkAssignments : MonoBehaviour
             {
                 newLandmark = hit.collider.gameObject;
 
-                while (newLandmark.transform.parent.parent != null)
+                if (newLandmark.transform.parent != null)
                 {
-                    newLandmark = newLandmark.transform.parent.gameObject;
+                    while (newLandmark.transform.parent.parent != null)
+                    {
+                        newLandmark = newLandmark.transform.parent.gameObject;
+                    }
                 }
             }
-
 
             if (newLandmark == null) { Debug.LogError("ERROR: Landmark not found. Make sure that the coordinates are accurate and that there is a texture at that point."); continue; }
 

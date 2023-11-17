@@ -37,7 +37,7 @@ public class LandmarkInfoSO : ScriptableObject
         }
         else
         {
-            newCoords = new Vector3(inGameVector2.x, 20f, inGameVector2.y);
+            newCoords = new Vector3(inGameVector2.x, -20f, inGameVector2.y);
             realLifeCoords = GPSEncoder.USCToGPS(newCoords);
         }
 

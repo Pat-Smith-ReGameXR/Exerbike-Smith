@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a43da588a855e924c821a3abffad29af, type: 3}
-  m_Name: TestLandmark_01
+  m_Name: WhaleCreek
   m_EditorClassIdentifier: 
-  landmarkName: Empire State Building
+  landmarkName: Whale Creek
   convertFromCoordinatesToVector3: 1
-  realLifeCoords: {x: 40.86737, y: -74.03599}
-  inGameVector2: {x: -2735.056, y: 5842.1904}
-  descriptionAudioClip: {fileID: 8300000, guid: d30ce8a206d7d384eb404dfc76093698, type: 3}
+  realLifeCoords: {x: 40.73461, y: -73.946915}
+  inGameVector2: {x: 0, y: 0}
+  descriptionAudioClip: {fileID: 0}
