@@ -5,6 +5,7 @@ using System.Linq;
 
 public class LandmarkAssignments : MonoBehaviour
 {
+    [SerializeField] BasketHolder bhScript;
     [SerializeField] LandmarkInfoSO[] lmInfoList;
 
     List<MeshRenderer> meshRendList = new List<MeshRenderer>();
@@ -18,8 +19,9 @@ public class LandmarkAssignments : MonoBehaviour
 
         GPSEncoder.SetLocalOrigin(new Vector2(40.814762f, -74.003571f));
         Instantiate(testObj, GPSEncoder.GPSToUCS(new Vector2(40.814762f, -74.003571f)), Quaternion.identity);
-        Instantiate(testObj, GPSEncoder.GPSToUCS(40.800538f, -73.958036f), Quaternion.identity);
+        Instantiate(testObj, GPSEncoder.GPSToUCS(40.800558f, -73.958174f), Quaternion.identity);
         Instantiate(testObj, GPSEncoder.GPSToUCS(40.76399198707826f, -73.97367144386561f), Quaternion.identity);
+        Instantiate(testObj, GPSEncoder.GPSToUCS(40.767875935409556f, -73.97182619531895f), Quaternion.identity);
 
         meshRendList.AddRange(GameObject.FindObjectsOfType<MeshRenderer>());
         Debug.Log("MESH REND LIST: " + meshRendList.Count);
@@ -69,6 +71,7 @@ public class LandmarkAssignments : MonoBehaviour
         {
             newLandmark = null;
             Vector3 landmarkPos = landmark.GetLandmarkLocation();
+            Debug.Log("POS ATTEMPT: " + landmarkPos);
 
             RaycastHit hit;
             if (Physics.Raycast(landmarkPos + (Vector3.up * 500), -Vector3.up, out hit, Mathf.Infinity) && hit.collider != null)
@@ -80,6 +83,7 @@ public class LandmarkAssignments : MonoBehaviour
                     newLandmark = newLandmark.transform.parent.gameObject;
                 }
             }
+
 
             if (newLandmark == null) { Debug.LogError("ERROR: Landmark not found. Make sure that the coordinates are accurate and that there is a texture at that point."); continue; }
 
@@ -97,6 +101,7 @@ public class LandmarkAssignments : MonoBehaviour
 
         TriggerAudioClip newTriggerScript = landmark.AddComponent<TriggerAudioClip>();
         newTriggerScript.SetAudioClip(landmarkInfo.LandmarkDescAudio);
+        newTriggerScript.SetLocationInfo(landmarkInfo.GetLandmarkLocation());
     }
 
     void OnDrawGizmos()

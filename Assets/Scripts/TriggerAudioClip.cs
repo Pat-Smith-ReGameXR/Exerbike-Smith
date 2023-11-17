@@ -7,25 +7,23 @@ public class TriggerAudioClip : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
-    [SerializeField] GameObject[] basketSpawnpoints;
-    List<int> availableSpawns = new List<int>();
-    [SerializeField] float souvenirScaling = 1f;
+    [SerializeField] float souvenirScaling = .002f;
+    [SerializeField] Vector3 buildingLocation;
 
     private void Start()
     {
         //TODO: find a better way to grab the game's main AudioSource
         audioSource = GameObject.Find("AudioSource").GetComponent<AudioSource>();
-
-        for(int i = 0; i < basketSpawnpoints.Length; i++)
-        {
-            availableSpawns.Add(i);
-        }
     }
 
     public void SetAudioClip(AudioClip newClip)
     {
         audioClip = newClip;
     }
+
+    public void SetLocationInfo(Vector3 location){ buildingLocation = new Vector3(location.x, 20f, location.z);}
+
+    public Vector3 LandmarkLocation { get { return buildingLocation; } }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,9 +43,22 @@ public class TriggerAudioClip : MonoBehaviour
 
     public void SpawnBuildingInBasket(GameObject player, GameObject building)
     {
-        GameObject newSouvenir = Instantiate(building.gameObject, Vector3.zero, Quaternion.identity);
-        newSouvenir.transform.parent = player.transform;
-        newSouvenir.transform.localScale = Vector3.one * souvenirScaling;
+        GameObject newSouvenir = Instantiate(building.gameObject, gameObject.transform.position, Quaternion.identity);
+        newSouvenir.transform.eulerAngles = new Vector3(-90, 0, 0);
+        newSouvenir.name = "DUPLICATE LANDMARK";
+
+        GameObject newSouvenirHolder = new GameObject();// (GameObject)Instantiate(null, buildingLocation, Quaternion.identity);
+        newSouvenirHolder.transform.position = buildingLocation;
+        newSouvenirHolder.name = "SOUVENIR";
+
+        newSouvenir.transform.parent = newSouvenirHolder.transform;      
+
+        Transform newSpawnTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<BasketHolder>().GrabRandomBasketSpawnpoint();
+        newSouvenirHolder.transform.parent = newSpawnTransform;
+        newSouvenirHolder.transform.localPosition = Vector3.zero;
+        newSouvenirHolder.transform.localEulerAngles = Vector3.zero;
+        newSouvenirHolder.transform.localScale = Vector3.one * souvenirScaling;
+        
     }
 
     IEnumerator ChangeBuildingColor(AudioClip audioClip)

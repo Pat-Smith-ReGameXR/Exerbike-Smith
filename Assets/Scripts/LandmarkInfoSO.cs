@@ -32,8 +32,8 @@ public class LandmarkInfoSO : ScriptableObject
         if (convertFromCoordinatesToVector3)
         {
             //TODO: convert coordinates to Vector3 here!!!
-            inGameVector2 = GPSEncoder.GPSToUCS(realLifeCoords);
-            newCoords = inGameVector2;
+            newCoords = GPSEncoder.GPSToUCS(realLifeCoords);
+            inGameVector2 = new Vector2 (newCoords.x, newCoords.z);
         }
         else
         {
