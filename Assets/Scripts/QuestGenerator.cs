@@ -19,6 +19,10 @@ public class QuestGenerator : MonoBehaviour
     public GameObject testObject;
     public GameObject questObject;
 
+    public GameObject deliveryTarget;
+
+    GameObject endQuestPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +43,24 @@ public class QuestGenerator : MonoBehaviour
             GameObject q1 = Instantiate(questObject, questStartPos, Quaternion.identity);
             q1.name = "Quest - StartPoint";
             GameObject q2 = Instantiate(questObject, questEndPos, Quaternion.identity);
+            endQuestPoint = q2;
             q2.name = "Quest - EndPoint";
+
+            StartCoroutine(Start_Part2());
         }
     }
 
     IEnumerator Start_Part2()
     {
         yield return new WaitForSeconds(1f);
+
+        Vector3 randTargetSpawn = Random.insideUnitSphere * 20f;
+        randTargetSpawn = Vector3.Scale(randTargetSpawn, new Vector3(1f, 0f, 1f));
+        randTargetSpawn += endQuestPoint.transform.position;
+
+        GameObject newDeliveryObject = Instantiate(deliveryTarget, randTargetSpawn, Quaternion.identity);
+        newDeliveryObject.transform.rotation = Quaternion.LookRotation(endQuestPoint.transform.position - newDeliveryObject.transform.position);
+        newDeliveryObject.transform.rotation = Quaternion.Euler(new Vector3(newDeliveryObject.transform.rotation.x - 30, newDeliveryObject.transform.rotation.y, newDeliveryObject.transform.rotation.z));
     }
 
 }

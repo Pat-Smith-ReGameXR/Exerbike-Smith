@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class QuestTarget : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject questItem;
 
-    // Update is called once per frame
-    void Update()
+    public void Init( GameObject newQuestItem)
     {
-        
+        questItem = newQuestItem;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("QuestItem"))
+        if (other.gameObject.CompareTag("QuestItem"))// && other.gameObject == questItem)
         {
-
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

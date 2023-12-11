@@ -2103,6 +2103,7 @@ MonoBehaviour:
   questEndPos: {x: 0, y: 0, z: 0}
   testObject: {fileID: 781456398236521023, guid: 6bd78cd7c44dc8e4ba41357bac1f05ac, type: 3}
   questObject: {fileID: 5666793287504874107, guid: 6ed41dd5c6480284e9cbd22d1e0dbc37, type: 3}
+  deliveryTarget: {fileID: 4113528320262789067, guid: 2de1e62b23f1214428461e90f77726d1, type: 3}
 --- !u!4 &1585903101
 Transform:
   m_ObjectHideFlags: 0
