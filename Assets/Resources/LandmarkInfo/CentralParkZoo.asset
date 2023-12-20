@@ -16,4 +16,4 @@ MonoBehaviour:
   convertFromCoordinatesToVector3: 1
   realLifeCoords: {x: 40.76762, y: -73.971306}
   inGameVector2: {x: 2722.1821, y: -5235.138}
-  descriptionAudioClip: {fileID: 0}
+  descriptionAudioClip: {fileID: 8300000, guid: d30ce8a206d7d384eb404dfc76093698, type: 3}
